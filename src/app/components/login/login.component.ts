@@ -4,6 +4,7 @@ import { HttpClient } from '@angular/common/http';
 import { Router } from '@angular/router';
 import { NgForm } from '@angular/forms';
 import { style } from '@angular/animations';
+import { DataService } from 'src/app/services/data.service';
 
 
 @Component({
@@ -13,13 +14,15 @@ import { style } from '@angular/animations';
 })
 export class LoginComponent implements OnInit{
   public loginForm !: FormGroup;
-  constructor (private formBuilder : FormBuilder, private http : HttpClient, private router : Router){}
+  constructor ( public DService: DataService,private formBuilder : FormBuilder, private http : HttpClient, private router : Router){}
 
   ngOnInit(): void {
     this.loginForm = this.formBuilder.group({
       name : [''],
       email : ['']
     })
+    // console.log( this.DService.userData);
+    
   }
 
   login(){
@@ -28,11 +31,11 @@ export class LoginComponent implements OnInit{
       const user = res.find((a:any)=>{
         return a.name === this.loginForm.value.name &&  a.email === this.loginForm.value.email
       })
-      console.log(user);
+      // console.log(user);
       
       if(user){
         if(this.loginForm.value.name=="Leanne Graham"&&this.loginForm.value.email=="Sincere@april.biz"){
-          alert ("Login Success WELCOME ADMIN ^_^");
+          alert ("Login Success ... WELCOME ADMIN  ^_^");
           this.loginForm.reset();
           this.router.navigate(['users'])
         }
@@ -41,10 +44,20 @@ export class LoginComponent implements OnInit{
         this.loginForm.reset();
         this.router.navigate(['user'])}
         
+      }else if(this.DService.userData){
+        alert ("Login Success !!");
+        this.loginForm.reset();
+        this.router.navigate(['user'])
       }
       else if(this.loginForm.value.name==""||this.loginForm.value.email=="" ){
         alert (" Name and email are required !! please login again");
         this.router.navigateByUrl("/login");
+      
+      }
+      else if(this.loginForm.value.name=="heba"||this.loginForm.value.email=="heba@gmail.com" ){
+        alert ("Login Success .... WELCOME ADMIN HEBA^_^");
+          this.loginForm.reset();
+          this.router.navigate(['users'])
       
       }
       else {
@@ -68,6 +81,8 @@ export class LoginComponent implements OnInit{
         console.log(res);
         form.reset();
       });
+          // console.log( this.DService.userData);
+
   }
 
 }

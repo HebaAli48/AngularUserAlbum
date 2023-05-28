@@ -3,6 +3,7 @@ import { Router } from '@angular/router';
 import { UsersService } from 'src/app/services/users.service';
 import { ActivatedRoute } from '@angular/router';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { DataService } from 'src/app/services/data.service';
 
 @Component({
   selector: 'app-users',
@@ -13,16 +14,31 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 export class UsersComponent implements OnInit {
   ID:any;
   user:any;
-  constructor( public UService:UsersService,public router: Router){}
+  constructor(  public DService: DataService, public UService:UsersService,public router: Router){
+    // console.log(this.DService.userData);
+
+  }
     users:any;
   ngOnInit(): void {
+    // console.log(this.DService.userData);
+    
         this.UService.GetAllUsers().subscribe({
       next:(data)=>{
-        console.log(data)
+        // console.log(data)
         this.users = data;
       },
       error:(err)=>{console.log(err)}
     })
+    // if(this.DService.userData){
+    //   // console.log("hi");
+    //    console.log(this.DService.userData);
+       
+    //   let id=(this.users[this.users.length-1].id) +1
+    // //  let Naddress = { this.DService.userData.address.street,this.DService.userData.address.suite,this.DService.userData.address.city };
+    // // let NnewUser = {id,this.DService.userData.name, this.DService.userData.email, this.DService.userData.phone, Naddress };
+    //         this.users.push(this.DService.userData);
+
+    // }
   }
   
   clickUpdate(e:any){
@@ -45,6 +61,7 @@ this.ID=e.target.id
 
   delItem(){
     this.users=this.users.filter((item:any)=>item.id!=this.ID)
+
    
   
   }   
