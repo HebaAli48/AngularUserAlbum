@@ -1,0 +1,55 @@
+<div class="container">
+  <div class="row">
+    <div class="col-md-3">
+      <div class="card">
+        <div class="text-center">
+          <h1>Sign Up</h1>
+          <h6>Register yourself !!</h6>
+        </div>
+        <form  [formGroup]="myValidation" class="form lh-1 ">
+          <div class="form-group d-flex  mb-3">
+            <label for="name" class="form-label col-3">Name</label>
+            <input formControlName="name" #name id="name" type="text" placeholder="Name *" class="form-control" />
+          </div>
+          <div class="text-center mt-1 mb-1" *ngIf="NameValid ==false" style="color: rgb(255, 88, 88); text-shadow: 0px 0px 2px rgb(0, 0, 0);"> User Name not valid</div>
+
+          <div class="form-group d-flex mt-3">
+            <label for="email" class="form-label col-3">Email-Address</label>
+            <input formControlName="email" #email id="email" type="email" class="form-control" placeholder="example@example.com *" id="exampleInputEmail1"
+              aria-describedby="emailHelp" />
+
+          </div>
+          <div id="emailHelp" class="form-text mt-2  " style="margin-left: 120px;">We'll never share your email with
+            anyone else.</div>
+            <div class="text-center mt-1 mb-1" *ngIf=" MailValid==false" style="color: rgb(255, 88, 88); text-shadow: 0px 0px 2px rgb(0, 0, 0);"> Email is Required and match it's pattern</div>
+
+          <div class="form-group d-flex mt-3">
+            <label for="phone" class="form-label col-3">Phone</label>
+            <input formControlName="phone" #phone id="phone" placeholder="Phone *" type="text" class="form-control" id="exampleInputPhone" />
+          </div>
+          <div class="text-center mt-1 mb-1"  *ngIf="PhoneValid==false" style="color: rgb(255, 88, 88); text-shadow: 0px 0px 2px rgb(0, 0, 0);"> Phone is Required and must be Numbers only</div>
+          <div class="form-group d-flex mt-3">
+            <label for="address" class="col-3">Address</label>
+            <input formControlName="street" #street id="street" type="text" class="form-control" placeholder="street *" />
+            <input formControlName="suite" #suite id="suite" type="text" class="form-control" placeholder="suite *" />
+            <input formControlName="city" #city id="city" type="text" class="form-control" placeholder="city *" />
+          </div>
+          <div class="text-center mt-1 mb-1" *ngIf="StreetValid==false" style="color: rgb(255, 88, 88); text-shadow: 0px 0px 2px rgb(0, 0, 0);">  Street is Required</div>
+          <div class="text-center mt-1 mb-1" *ngIf="SuiteValid==false" style="color: rgb(255, 88, 88); text-shadow: 0px 0px 2px rgb(0, 0, 0);">  Suite is Required</div>
+          <div class="text-center mt-1 mb-1" *ngIf="CityValid==false" style="color: rgb(255, 88, 88); text-shadow: 0px 0px 2px rgb(0, 0, 0);"> City is Required and must be characters only</div>
+          <div class="form-group text-center mt-4">
+            <input type="submit" (click)="add(name.value, email.value, phone.value,street.value,suite.value,city.value)"
+              value="Register" class="btn btn-primary mb-2 me-3 " />
+            <div >
+              <a routerLink="/login" style="color: aliceblue; margin-top: 10px;">Already registered ? Please Click To
+                Login</a>
+            </div>
+              
+
+          </div>
+
+        </form>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,16 @@
+<div class="   ms-5 me-5  m-auto mb-5 mt-3" style="opacity: 50%;">
+  <app-notadmin-header></app-notadmin-header>
+</div>
+
+   <div class="d-flex flex-row flex-wrap m-auto text-center  w-75  mb-3" >
+    <div class="p-2 col-4" *ngFor="let b of album">
+      <div class="card" style="width: 18rem; height: 9rem;">
+        <div class="card-header">
+          <a (click)="Navigate(b)" [routerLink]="['photo']"[queryParams]="{userId:'{{b.userId}}',albumId:'{{b.id}}'}">
+            ALBUM {{ b.id}}
+        </a>
+        </div>
+        <div class="card-body">
+         <p class="card-text">Title:{{ b.title}} </p>
+        </div>
+      </div>

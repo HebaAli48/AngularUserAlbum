@@ -1,0 +1,19 @@
+<div class="   ms-5 me-5  m-auto mb-5 mt-3" style="opacity: 50%;">
+  <app-header></app-header>
+</div>
+
+<div class="card w-50 m-auto mt-5">
+  <div class="card-header alert alert-primary text-center fs-3">
+    Delete?
+  </div>
+  <div class="card-body">
+    <h5 class="card-title  text-center">Are you sure?!</h5>
+    <div class="d-flex justify-content-evenly">
+      <div>
+        <a class="btn btn-outline-dark" (click)="delItem()">YES</a>
+      </div>
+      <div>
+        <a class="btn btn-outline-success" routerLink="/users">NO</a>
+      </div>
+    </div>  </div>
+</div>

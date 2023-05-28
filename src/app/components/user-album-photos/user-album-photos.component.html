@@ -1,0 +1,15 @@
+<div class="   ms-5 me-5  m-auto mb-5 mt-3" style="opacity: 50%;">
+  <app-header></app-header>
+</div>
+
+<div class="d-flex flex-row flex-wrap  mb-3">
+  <div class="p-2 col-3" *ngFor="let p of photo">
+    <div class="card" style="width: 18rem;">
+      <img src="{{p.url}}" class="img-fluid rounded-start">
+      <div class="card-body">
+        <h5 class="card-title">Image ID:{{ p.id}}</h5>
+        <p class="card-text">Title:{{ p.title}} </p>
+      </div>
+    </div>
+  </div>
+</div>

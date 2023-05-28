@@ -1,0 +1,83 @@
+<!-- <div class="container">
+    <div class="row">
+      <div class="col">
+        <form class="form">
+          <div class="form-group d-flex mt-2">
+            <label for="name" class="col-3">Name</label>
+            <input #name id="name" type="text" class="form-control" />
+          </div>
+          <div class="form-group d-flex mt-2">
+            <label for="email" class="col-3">Email-Address</label>
+            <input #email id="email" type="text" class="form-control" />
+          </div>
+          <div class="form-group d-flex mt-2">
+            <label for="phone" class="col-3">Phone</label>
+            <input #phone id="phone" type="text" class="form-control" />
+          </div>
+          <div class="form-group d-flex mt-2">
+            <label for="address" class="col-3">Address</label>
+            <input #street id="street" type="text" class="form-control"  placeholder="street"/>
+            <input #suite id="suite" type="text" class="form-control"  placeholder="suite"/>
+            <input #city id="city" type="text" class="form-control"  placeholder="city"/>
+          </div>
+          <div class="form-group text-center mt-2">
+            <input type="button" (click)="add(name.value, email.value, phone.value,street.value,suite.value,city.value)" value="ADD" data-bs-toggle="modal" data-bs-target="#exampleModal" class="btn btn-outline-success" />
+          </div>
+        </form>
+      </div>
+    </div>
+  </div> -->
+  <div class="   ms-5 me-5  m-auto mb-5 mt-3" style="opacity: 50%;">
+    <app-header></app-header>
+  </div>
+  
+
+   <div class="card w-75 m-auto mt-5">
+    <div class="card-header text-center fs-4">
+      Add User
+    </div>
+    <div class="card-body">
+      <div class="row">
+        <div class="col">
+          <form [formGroup]="myValidation" class="form">
+            <div class="form-group d-flex mt-2">
+              <label for="name" class="col-3">Name</label>
+              <input  formControlName="name" #name id="name" type="text" class="form-control"/>
+            </div>
+            <div class="text-center"  *ngIf="NameValid ==false" style="color: red;"> User Name not valid</div>
+
+            <div class="form-group d-flex mt-2">
+              <label for="email" class="col-3">Email-Address</label>
+              <input formControlName="email" #email id="email" type="text" class="form-control"  />
+            </div>
+            <div class="text-center" *ngIf=" MailValid==false" style="color: red;"> Email is Required and match it's pattern</div>
+
+            <div class="form-group d-flex mt-2">
+              <label for="phone" class="col-3">Phone</label>
+              <input formControlName="phone" #phone id="phone" type="text" class="form-control"  />
+            </div>
+            <div class="text-center" *ngIf="PhoneValid==false" style="color: red;"> Phone is Required and must be Numbers only</div>
+
+            <div class="form-group d-flex mt-2">
+              <label for="address" class="col-3">Address</label>
+              <input formControlName="street" #street id="street" type="text" class="form-control"  placeholder="street"   />
+              <input formControlName="suite" #suite id="suite" type="text" class="form-control"  placeholder="suite"  />
+              <input formControlName="city" #city id="city" type="text" class="form-control"  placeholder="city"   />
+            </div>
+            <div class="text-center" *ngIf="StreetValid==false" style="color: red;">  Street is Required</div>
+            <div class="text-center" *ngIf="SuiteValid==false" style="color: red;">  Suite is Required</div>
+            <div class="text-center" *ngIf="CityValid==false" style="color: red;"> City is Required and must be characters only</div>
+  
+           
+            <div class="form-group text-center mt-4 d-flex justify-content-evenly">
+              <input type="button" (click)="add(name.value, email.value, phone.value,street.value,suite.value,city.value)" value="ADD" data-bs-toggle="modal" data-bs-target="#exampleModal" class="btn btn-outline-success" />
+              <input type="button"  class="btn btn-outline-success" value="Cancel" routerLink="/users"/>
+  
+            </div>
+          </form>
+        </div>
+      </div>
+      
+    </div>
+  </div>
+  

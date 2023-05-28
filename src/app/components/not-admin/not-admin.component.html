@@ -1,0 +1,28 @@
+<div class="   ms-5 me-5  m-auto mb-5 mt-3" style="opacity: 50%;">
+  <app-notadmin-header></app-notadmin-header>
+</div>
+<table class="table table-success table-striped text-center m-auto" style="width: 1200px;">
+  <thead>
+    <tr>
+      <th scope="col">#</th>
+      <th scope="col">Name</th>
+      <th scope="col">Email</th>
+      <th scope="col">Number</th>
+      <th scope="col">Adress</th>
+      <th scope="col">ALBUMS</th>
+   
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let s of users">
+      <td> {{s.id}}</td>
+      <td> {{s.name}}</td>
+      <td> {{s.email}} </td>
+      <td> {{s.phone}}</td>
+      <td> {{s.address.street}} st, {{s.address.suite}} , {{s.address.city}}</td>
+
+      <td class="text-center"><a routerLink="/user/{{s.id}}/albums"><img src="assets/images/album-logo.png"
+            style="width: 35px; " /></a> </td>
+    </tr>
+  </tbody>
+</table>
