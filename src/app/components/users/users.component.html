@@ -79,7 +79,7 @@
   <tbody>
     <tr *ngFor="let s of users">
       <td> {{s.id}}</td>
-      <td> <a routerLink="/users{{s.id}}">{{s.name}}</a></td>
+      <td> {{s.name}}</td>
       <td> {{s.email}} </td>
       <td> {{s.phone}}</td>
       <td> {{s.address.street}} st, {{s.address.suite}} , {{s.address.city}}</td>
