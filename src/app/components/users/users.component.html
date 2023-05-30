@@ -1,20 +1,5 @@
-<div class="   ms-5 me-5  m-auto mb-5 mt-3" style="opacity: 50%;">
+<app-header></app-header>
 
-
-  <nav class="navbar navbar-light bg-secondary d-flex justify-content-evenly">
-    <div class="container-fluid">
-      <a routerLink="/users" style="color: white;"> <img src="assets/images/home-logo.png"  style="width: 50px; " routerLink="/users">Home</a>
-      <!-- <h1 style="color: aliceblue;" routerLink="/users">Home</h1> -->
-      <div class="d-flex">
-        
-        <button  type="button" class="btn btn-success me-3" data-bs-toggle="modal" data-bs-target="#exampleModal">
-          Add User
-        </button>
-        <button routerLink="/login" class="btn btn-danger me-3">Logout</button>
-      </div>
-    </div>
-  </nav>
-</div>
 
 <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog">
@@ -60,16 +45,30 @@
           <div class="form-group text-center mt-4 d-flex justify-content-evenly">
             <input type="button" (click)="add(name.value, email.value, phone.value,street.value,suite.value,city.value)"
               value="ADD" data-bs-toggle="modal" data-bs-target="#exampleModal" class="btn btn-outline-success" />
-            <input type="button" class="btn btn-outline-success" value="Cancel"  data-bs-dismiss="modal" />
+            <input type="button" class="btn btn-outline-danger" value="Cancel" data-bs-dismiss="modal" />
 
           </div>
         </form>
 
       </div>
-      
+
     </div>
   </div>
-</div>  
+</div>
+<div *ngIf="!users" class="text-center">
+  <div class="d-flex justify-content-center">
+    <div class="spinner-border text-success" role="status">
+      <span class="visually-hidden">Loading...</span>
+    </div>
+  </div>
+  <img src="assets/images/loading1.png">
+
+</div>
+<div class="text-center">
+  <img src="assets/images/reg2.png" style="width: 85px;" (click)="clickAdd()" type="button" class="btn"
+    data-bs-toggle="modal" data-bs-target="#exampleModal">
+
+</div>
 
 <table class="table table-success table-striped text-center m-auto" style="width: 1200px;">
   <thead>
@@ -91,106 +90,115 @@
       <td> {{s.email}} </td>
       <td> {{s.phone}}</td>
       <td> {{s.address.street}} st, {{s.address.suite}} , {{s.address.city}}</td>
-    
-      <td class="text-center"><a routerLink="/users/{{s.id}}/albums"><img src="assets/images/album-logo.png"
-            style="width: 35px; " /></a> </td>
-<td>
-  
-  
-  <button type="button" class="btn btn-primary" id="{{s.id}}" (click)="clickUpdate($event)" data-bs-toggle="modal" data-bs-target="#exampleModal2">
-    update
-  </button>
-  
-  
-  <div  class="modal fade" id="exampleModal2" tabindex="-1" aria-labelledby="exampleModalLabel2" aria-hidden="true">
-    <div class="modal-dialog">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h1 class="modal-title fs-5" id="exampleModalLabel2">please fill All Fields</h1>
-          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-        </div>
-        <div class="modal-body">
-          <form class="form" [formGroup]="myValidation" >
-            <div class="form-group d-flex mt-2">
-              <label for="name" class="col-3">Name</label>
-              <input  formControlName="name" #name id="name" type="text" class="form-control" />
-            </div>
-                      <div class="text-center mt-1 mb-1" *ngIf="NameValid ==false" style="color: red; "> User Name not valid</div>
 
-            <div class="form-group d-flex mt-2">
-              <label for="email" class="col-3">Email-Address</label>
-              <input formControlName="email" #email id="email" type="text" class="form-control"    />
-            </div>
-                        <div class="text-center" *ngIf=" MailValid==false" style="color: red;"> Email is Required and match it's pattern</div>
-
-            <div class="form-group d-flex mt-2">
-              <label for="phone" class="col-3">Phone</label>
-              <input formControlName="phone" #phone id="phone" type="text" class="form-control"   />
-            </div>
-                        <div class="text-center" *ngIf="PhoneValid==false" style="color: red;"> Phone is Required</div>
-
-            <div class="form-group d-flex mt-2">
-              <label for="address" class="col-3">Address</label>
-              <input formControlName="street" #street id="street" type="text" class="form-control"    />
-              <input formControlName="suite" #suite id="suite" type="text" class="form-control"   />
-              <input formControlName="city" #city id="city" type="text" class="form-control"    />
-            </div>
-                        <div class="text-center" *ngIf="StreetValid==false" style="color: red;">  Street is Required</div>
-            <div class="text-center" *ngIf="SuiteValid==false" style="color: red;">  Suite is Required</div>
-            <div class="text-center" *ngIf="CityValid==false" style="color: red;"> City is Required and must be characters only</div>
-          
-          
-            
-
-           
-            <div class="form-group text-center mt-4 d-flex justify-content-evenly">
-              <input type="button" (click)="update(name.value, email.value, phone.value,street.value,suite.value,city.value)"
-              value="UPDATE" data-bs-toggle="modal" data-bs-target="#exampleModal2" class="btn btn-outline-success" />
-              <input type="button" class="btn btn-outline-success" value="Cancel"  data-bs-dismiss="modal" />  
-            </div>
-          </form>
-  
-        </div>
+      <td class="text-center"><a routerLink="/users/{{s.id}}/albums"><img class="mt-2"
+            src="assets/images/album-logo3.png" style="width: 40px; " /></a> </td>
+      <td>
         
-      </div>
-    </div>
-  </div>  
-</td>
-<td> 
-<button type="button"  id="{{s.id}}" (click)="clickUpdate($event)" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#exampleModal3">
-  Delete
-</button>
 
-<!-- Modal -->
-<div class="modal fade" id="exampleModal3" tabindex="-1" aria-labelledby="exampleModalLabel3" aria-hidden="true">
-  <div class="modal-dialog">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h1 class="modal-title fs-5" id="exampleModalLabel3"> Delete?</h1>
-        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-      </div>
-      <div class="modal-body">
-        
-        <div class="card  m-auto ">
-          <div class="card-header alert alert-primary text-center fs-3">
-            Are you sure?!
+
+        <img src="assets/images/edit1.png" style="width: 75px;" type="button" class="btn " id="{{s.id}}"
+          (click)="clickUpdate($event)" data-bs-toggle="modal" data-bs-target="#exampleModal2">
+
+
+
+        <div class="modal fade" id="exampleModal2" tabindex="-1" aria-labelledby="exampleModalLabel2"
+          aria-hidden="true">
+          <div class="modal-dialog">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h1 class="modal-title fs-5" id="exampleModalLabel2">please fill All Fields</h1>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+              </div>
+              <div class="modal-body">
+                <form class="form" [formGroup]="myValidation">
+                  <div class="form-group d-flex mt-2">
+                    <label for="name" class="col-3">Name</label>
+                    <input formControlName="name" #name id="name" type="text" class="form-control" />
+                  </div>
+                  <div class="text-center mt-1 mb-1" *ngIf="NameValid ==false" style="color: red; "> User Name not valid
+                  </div>
+
+                  <div class="form-group d-flex mt-2">
+                    <label for="email" class="col-3">Email-Address</label>
+                    <input formControlName="email" #email id="email" type="text" class="form-control" />
+                  </div>
+                  <div class="text-center" *ngIf=" MailValid==false" style="color: red;"> Email is Required and match
+                    it's pattern</div>
+
+                  <div class="form-group d-flex mt-2">
+                    <label for="phone" class="col-3">Phone</label>
+                    <input formControlName="phone" #phone id="phone" type="text" class="form-control" />
+                  </div>
+                  <div class="text-center" *ngIf="PhoneValid==false" style="color: red;"> Phone is Required</div>
+
+                  <div class="form-group d-flex mt-2">
+                    <label for="address" class="col-3">Address</label>
+                    <input formControlName="street" #street id="street" type="text" class="form-control" />
+                    <input formControlName="suite" #suite id="suite" type="text" class="form-control" />
+                    <input formControlName="city" #city id="city" type="text" class="form-control" />
+                  </div>
+                  <div class="text-center" *ngIf="StreetValid==false" style="color: red;"> Street is Required</div>
+                  <div class="text-center" *ngIf="SuiteValid==false" style="color: red;"> Suite is Required</div>
+                  <div class="text-center" *ngIf="CityValid==false" style="color: red;"> City is Required and must be
+                    characters only</div>
+
+
+
+
+
+                  <div class="form-group text-center mt-4 d-flex justify-content-evenly">
+                    <input type="button"
+                      (click)="update(name.value, email.value, phone.value,street.value,suite.value,city.value)"
+                      value="UPDATE" data-bs-toggle="modal" data-bs-target="#exampleModal2"
+                      class="btn btn-outline-success" />
+                    <input type="button" class="btn btn-outline-danger" value="Cancel" data-bs-dismiss="modal" />
+                  </div>
+                </form>
+
+              </div>
+
+            </div>
           </div>
-          <div class="card-body">
-            <div class="d-flex justify-content-evenly">
-              <div>
-                <a class="btn btn-outline-dark" data-bs-dismiss="modal" (click)="delItem()">YES</a>
-              </div>
-              <div>
-                <a class="btn btn-outline-success" data-bs-dismiss="modal">NO</a>
-              </div>
-            </div>  </div>
         </div>
-      </div>
-      
-    </div>
-  </div>
-</div>
-</td>
+      </td>
+      <td>
+        <img src="assets/images/delete-logo2.png" style="width: 60px;" id="{{s.id}}" (click)="clickUpdate($event)"
+          class="btn " data-bs-toggle="modal" data-bs-target="#exampleModal3">
+
+
+        <!-- Modal -->
+        <div class="modal fade" id="exampleModal3" tabindex="-1" aria-labelledby="exampleModalLabel3"
+          aria-hidden="true">
+          <div class="modal-dialog">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h1 class="modal-title fs-5" id="exampleModalLabel3"> Delete?</h1>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+              </div>
+              <div class="modal-body">
+
+                <div class="card  m-auto ">
+                  <div class="card-header alert alert-primary text-center fs-3">
+                    Are you sure?!
+                  </div>
+                  <div class="card-body">
+                    <div class="d-flex justify-content-evenly">
+                      <div>
+                        <a class="btn btn-outline-danger" data-bs-dismiss="modal" (click)="delItem()">YES</a>
+                      </div>
+                      <div>
+                        <a class="btn btn-outline-dark" data-bs-dismiss="modal">NO</a>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+            </div>
+          </div>
+        </div>
+      </td>
       <!-- <td class="text-center"><a routerLink="/users/{{s.id}}/update"><img src="assets/images/edit-logo.png"
             style="width: 35px; " /> </a> </td> -->
       <!-- <td class="text-center"><a routerLink="/users/{{s.id}}/delete"> <img src="assets/images/delete-logo1.png"

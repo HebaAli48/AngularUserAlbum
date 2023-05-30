@@ -44,16 +44,18 @@ export class UsersComponent implements OnInit {
   clickUpdate(e:any){
     // console.log(e.target.id);
 this.ID=e.target.id
-// console.log(this.users[this.ID]);
+console.log(this.ID);
+
+console.log(this.users[(this.ID)-1]);
 
 
         this.myValidation.setValue({
-          name: this.users[this.ID].name,
-          email: this.users[this.ID].email,
-          phone: this.users[this.ID].phone,
-          street: this.users[this.ID].address.street,
-          suite: this.users[this.ID].address.suite,
-          city: this.users[this.ID].address.city
+          name: this.users[(this.ID)-1].name,
+          email: this.users[(this.ID)-1].email,
+          phone: this.users[(this.ID)-1].phone,
+          street: this.users[(this.ID)-1].address.street,
+          suite: this.users[(this.ID)-1].address.suite,
+          city: this.users[(this.ID)-1].address.city
         });
 
    
@@ -77,26 +79,35 @@ this.ID=e.target.id
     if(this.myValidation.valid){
 
 
-      this.users[this.ID].name=newUser.name
-        // this.user=newUser
+      this.users[(this.ID)-1].name=newUser.name
+      this.users[(this.ID)-1].email=newUser.email
+      this.users[(this.ID)-1].phone=newUser.phone
+      this.users[(this.ID)-1].address.street=newUser.address.street
+      this.users[(this.ID)-1].address.suite=newUser.address.suite
+      this.users[(this.ID)-1].address.city=newUser.address.city        // this.user=newUser
       // this.UService.UpdateUser( this.ID,newUser).subscribe();
       this.router.navigateByUrl("/users")
       }
-      this.users[this.ID].name=newUser.name
-      this.users[this.ID].email=newUser.email
-      this.users[this.ID].phone=newUser.phone
-      this.users[this.ID].address.street=newUser.address.street
-      this.users[this.ID].address.suite=newUser.address.suite
-      this.users[this.ID].address.city=newUser.address.city
+     
   }
 
 
 
 
-
+  clickAdd(){
+    this.myValidation.setValue({
+      name: "",
+      email: "",
+      phone:"",
+      street:"",
+      suite: "",
+      city:""
+    });
+  }
 
   add(name: any, email: any, phone: any, street: any, suite: any, city: any) {
     // console.log(this.users);
+  
 
   let id=(this.users[this.users.length-1].id) +1
 

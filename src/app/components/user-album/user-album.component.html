@@ -1,24 +1,34 @@
 
-<div class="   ms-5 me-5  m-auto mb-5 mt-3" style="opacity: 50%;">
   <app-header></app-header>
+
+<div *ngIf="!album" class="text-center">
+  <div class="d-flex justify-content-center">
+    <div class="spinner-border text-success" role="status">
+      <span class="visually-hidden">Loading...</span>
+    </div>
+  </div>
+  <img src="assets/images/loading1.png" >
+
 </div>
-  <div class="d-flex flex-row flex-wrap m-auto text-center  w-75  mb-3" >
-    <div class="p-2 col-4" *ngFor="let b of album">
-      <div class="card" style="width: 18rem; height: 9rem;">
-        <div class="card-header">
-          <a (click)="Navigate(b)" [routerLink]="['photos']"[queryParams]="{userId:'{{b.userId}}',albumId:'{{b.id}}'}">
+<div  class="d-flex flex-row flex-wrap m-auto text-center  w-75  mb-3" >
+    <div class="p-2 col-4"  *ngFor="let b of album" >
+      <div class="card  mb-3" style=" height: 20rem;">
+        <div class="card-header p-3 " style="background-color: rgb(253, 107, 107);  ">
+          <a class=" link-light fs-3"  style=" text-decoration: none; " (click)="Navigate(b)" [routerLink]="['photos']"[queryParams]="{userId:'{{b.userId}}',albumId:'{{b.id}}'}">
             ALBUM {{ b.id}}
         </a>
         </div>
         <div class="card-body">
-         <p class="card-text">Title:{{ b.title}} </p>
+          <img src="assets/images/photos.png" class="img-fluid rounded-start" alt="ALBUM {{ b.id}}" (click)="Navigate(b)" [routerLink]="['photos']"[queryParams]="{userId:'{{b.userId}}',albumId:'{{b.id}}'}">
+         <p class="card-text">{{ b.title}} </p>
         </div>
       </div>
+ 
 
 
 
 
 
-      
-   <!-- {path:'photos?:userId&&:albumId',component:UserAlbumPhotosComponent},
+
+<!-- {path:'photos?:userId&&:albumId',component:UserAlbumPhotosComponent},
    <button type="button" class="btn btn-outline-primary"  routerLink="/users/{{s.id}}/albums"> -->
